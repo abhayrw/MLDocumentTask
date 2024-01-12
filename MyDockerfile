@@ -19,6 +19,9 @@ WORKDIR /app/model
 # Download the model file from Google Drive
 RUN curl -L -o model.pth "https://drive.google.com/uc?id=1z6DFKJNP61y2asv_2n2O4wur4m8H1V7D"
 
+# Print the contents of the /app/model directory
+RUN ls /app/model
+
 # Switch back to the main working directory
 WORKDIR /app
 
