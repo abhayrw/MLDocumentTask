@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 WORKDIR /app/model
 
 # Download the model file from Google Drive
-RUN curl -L -o model.pth "https://drive.google.com/uc?id=1z6DFKJNP61y2asv_2n2O4wur4m8H1V7D"
+RUN curl -L -o model.pth "https://drive.google.com/uc?id=1k12-RnM2-aZ1Ymdr0K_Fpp_XUN85ICpu"
 
 # Print the contents of the /app/model directory
 RUN ls /app/model
