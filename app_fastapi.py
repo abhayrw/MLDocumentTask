@@ -1,12 +1,10 @@
 from fastapi import FastAPI, HTTPException
-import os
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
 from torchvision import models
 from PIL import Image
 from pydantic import BaseModel
-import pytesseract
 import easyocr
 
 def perform_ocr(image_path):
