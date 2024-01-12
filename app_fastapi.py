@@ -99,3 +99,7 @@ def predict_single_document(file_path):
 async def classify_document(file_input: FileInput):
     result = predict_single_document(file_input.file_path)
     return result
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=5000)
