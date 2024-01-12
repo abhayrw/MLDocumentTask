@@ -7,7 +7,22 @@ from torchvision import models
 from PIL import Image
 from pydantic import BaseModel
 import pytesseract
+import easyocr
 
+def perform_ocr(image_path):
+    # Create an OCR reader
+    reader = easyocr.Reader(['en'])
+
+    # Open the image using PIL
+    img = Image.open(image_path)
+
+    # Perform OCR using easyocr
+    result = reader.readtext(img)
+
+    # Extract and concatenate the recognized text
+    text = ' '.join([entry[1] for entry in result])
+
+    return text
 app = FastAPI()
 
 class FileInput(BaseModel):
@@ -27,11 +42,17 @@ class DocumentClassifier(nn.Module):
         return x
 
 def perform_ocr(image_path):
+    # Create an OCR reader
+    reader = easyocr.Reader(['en'])
+
     # Open the image using PIL
     img = Image.open(image_path)
 
-    # Perform OCR using pytesseract
-    text = pytesseract.image_to_string(img)
+    # Perform OCR using easyocr
+    result = reader.readtext(img)
+
+    # Extract and concatenate the recognized text
+    text = ' '.join([entry[1] for entry in result])
 
     return text
 
