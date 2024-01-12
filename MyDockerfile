@@ -16,9 +16,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Create a directory for your model
 WORKDIR /app/model
 
-# Download the model file from Google Drive using gdown
-RUN pip install gdown
-RUN gdown --id 1z6DFKJNP61y2asv_2n2O4wur4m8H1V7D -O /app/model/model.pth
+# Download the model file from Google Drive
+RUN curl -L -o model.pth "https://drive.google.com/uc?id=1z6DFKJNP61y2asv_2n2O4wur4m8H1V7D"
 
 # Print the contents of the /app/model directory
 RUN ls /app/model
