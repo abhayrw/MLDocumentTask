@@ -25,6 +25,13 @@ class DocumentClassifier(nn.Module):
         x = self.fc(x)
         return x
 
+# Load the pre-trained model
+model = DocumentClassifier(num_classes=4)
+model.load_state_dict(torch.load("fine_tuned_model.pth"))  # Specify the correct path
+model.eval()
+
+document_types = {0: "Pan Card", 1: "Aadhar Card", 2: "Passport", 3: "Voter ID"}
+
 def perform_ocr(image_path):
     # Open the image using PIL
     img = Image.open(image_path)
@@ -62,11 +69,6 @@ def check_if_front_or_back(doc, image_path):
             return "Back"
 
 def predict_single_document(file_path):
-    model = DocumentClassifier(num_classes=4)  # Assuming it's a pre-trained model
-    model.eval()
-
-    document_types = {0: "Pan Card", 1: "Aadhar Card", 2: "Passport", 3: "Voter ID"}
-
     try:
         # Load image
         image = Image.open(file_path)
@@ -88,7 +90,7 @@ def predict_single_document(file_path):
         # Map predicted class to document type
         predicted_document = document_types[predicted_class]
 
-        front_or_back = check_if_front_or_back(predicted_document,file_path)
+        front_or_back = check_if_front_or_back(predicted_document, file_path)
 
         return {"document_type": predicted_document, "view": front_or_back}
     except Exception as e:
