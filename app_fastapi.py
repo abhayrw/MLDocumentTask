@@ -27,7 +27,7 @@ class DocumentClassifier(nn.Module):
 
 # Load the pre-trained model
 model = DocumentClassifier(num_classes=4)
-model.load_state_dict(torch.load("/app/model/fine_tuned_model.pth"))  # Specify the correct path
+model.load_state_dict(torch.load("/app/model/model.pth"))  # Specify the correct path
 model.eval()
 
 document_types = {0: "Pan Card", 1: "Aadhar Card", 2: "Passport", 3: "Voter ID"}
