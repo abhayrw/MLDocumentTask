@@ -34,7 +34,7 @@ try:
 except Exception as e:
     print("Error loading the model:", e)
 
-document_types = {0: "Aadhar Card", 1: "Pan Card", 2: "Passport", 3: "Voter ID"}
+document_types = {0: "Pan Card", 1: "Aadhar Card", 2: "Passport", 3: "Voter ID"}
 
 def perform_ocr(image_path):
     # Open the image using PIL
