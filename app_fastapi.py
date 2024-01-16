@@ -45,7 +45,7 @@ def perform_ocr(image_path):
 
     return text
 
-async def check_if_front_or_back(doc, image_path):
+def check_if_front_or_back(doc, image_path):
     extracted_text = perform_ocr(image_path)
     # print(extracted_text)
     if doc == 'Aadhar Card':
@@ -94,7 +94,7 @@ async def predict_single_document(file_path):
         # Map predicted class to document type
         predicted_document = document_types[predicted_class]
 
-        front_or_back = await check_if_front_or_back(predicted_document, file_path)
+        front_or_back = check_if_front_or_back(predicted_document, file_path)
 
         return {"document_type": predicted_document, "view": front_or_back}
     except Exception as e:
