@@ -72,7 +72,7 @@ def check_if_front_or_back(doc, image_path):
         else:
             return "Back"
 
-async def predict_single_document(file_path):
+def predict_single_document(file_path):
     try:
         # Load image
         image = Image.open(file_path)
@@ -102,7 +102,7 @@ async def predict_single_document(file_path):
 
 @app.post("/classify")
 async def classify_document(file_input: FileInput):
-    result = await predict_single_document(file_input.file_path)
+    result = predict_single_document(file_input.file_path)
     return result
 
 if __name__ == "__main__":
